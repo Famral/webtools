@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Color Picker</title>
+  <style>
+    body {
+      background-color: #f2f2f2;
+      font-family: Arial, sans-serif;
+    }
+
+    .color-picker-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 80%;
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .color-picker-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .color-picker-label {
+      margin-right: 10px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .color-picker-input {
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      border: none;
+      border-radius: 50%;
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+    }
+
+    .color-preview {
+      width: 100px;
+      height: 100px;
+      border: 2px solid #333;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+
+    .copy-button {
+      padding: 8px 12px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="color-picker-box">
+    <h1>Color Picker Example</h1>
+
+    <div class="color-picker-container">
+      <label class="color-picker-label" for="colorPicker">Pick a color:</label>
+      <input class="color-picker-input" type="color" id="colorPicker" name="colorPicker">
+    </div>
+
+    <div class="color-preview"></div>
+
+    <button class="copy-button" id="copyButton">Copy Color</button>
+  </div>
+
+  <script>
+    // Get the color picker element, color preview element, and copy button element
+    const colorPicker = document.getElementById('colorPicker');
+    const colorPreview = document.querySelector('.color-preview');
+    const copyButton = document.getElementById('copyButton');
+
+    // Add an event listener to handle the color change
+    colorPicker.addEventListener('input', function() {
+      const selectedColor = colorPicker.value;
+
+      // Display the selected color
+      colorPreview.style.backgroundColor = selectedColor;
+    });
+
+    // Add an event listener to handle the copy button click
+    copyButton.addEventListener('click', function() {
+      const selectedColor = colorPicker.value;
+
+      // Copy the selected color to the clipboard
+      navigator.clipboard.writeText(selectedColor).then(function() {
+        console.log('Color copied to clipboard:', selectedColor);
+      }).catch(function(error) {
+        console.error('Unable to copy color:', error);
+      });
+    });
+  </script>
+</body>
+</html>
